@@ -5,6 +5,8 @@ To build and run application:
 
    Satisfied requirements 1-6
 
+function main() can be found in recordKeeper.c
+
                               Understood Requirements                             
                                                                                   
   - C Puzzle Description provided by ICS:                                         
