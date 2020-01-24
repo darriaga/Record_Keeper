@@ -1,6 +1,6 @@
 To build and run application:
-   In the /cpuzzle/src directory, run 'make all' to compile. Executable outfile rk
-   will be created after compilation and can be ran using ./rk ~/path/to/input.txt.
+   In the src directory, run 'make all' to compile. Executable outfile rk
+   will be created after compilation and can be ran using ./rk ~/path/to/your_input_file.txt.
    If no input file path argument is provided, a default one is generated. 
 
    Satisfied requirements 1-6
