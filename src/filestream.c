@@ -66,6 +66,9 @@ int fs_getEntryFormat(char * entry)
 	isoreti = regexec(&regexISO, entry, 0 , NULL, 0);
     stdreti = regexec(&regexSTD, entry, 0, NULL, 0);
     
+    regfree(&regexISO);
+    regfree(&regexSTD);
+    
     if(!isoreti)
         return ISO_FORMAT;
     else if (!stdreti)

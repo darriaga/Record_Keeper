@@ -12,7 +12,7 @@
 # define STD_FMT_FIELDS    6
 
 # define MAX_STACK_COUNT   512
-# define DEFAULT_INPUT     "../sampleData/default.txt"
+# define DEFAULT_INPUT     "../test/default.txt"
 
 typedef struct Records 
 {
@@ -59,7 +59,7 @@ Record  *rec_createRecord(char * buffer);
 int      rec_populateRecord(Record * record, char * buffer);
 Record * rec_allocateRecord();
 int      rec_addToRecordStack(Record * record);
-int      rec_freeStack();
+int rec_freeRecords();
 
 // functions in filestream.c
 int     fs_startInputStream(char * filename);

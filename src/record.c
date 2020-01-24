@@ -166,7 +166,25 @@ int rec_addToRecordStack(Record * record)
 		fprintf(stderr, "Error: could not evaluate proper stack entry\n");
 		return 1;
 	}
-	printf("added %x\n", &record_stack[stack_member_count].record);
 	stack_member_count++;
 	return 0;	
 }
+
+int rec_freeRecords()
+{
+    if(stack_member_count == 0){
+		return 0;
+	} else if (record_stack[0].record == NULL) {
+        return 0;
+    } else {
+        int index;
+		for(index = 0; index < stack_member_count; index++){
+            free(record_stack[index].record->timeA);
+            free(record_stack[index].record->timeB);
+            free(record_stack[index].record);
+        }
+        return 0;
+	}
+	return 1;
+}
+    

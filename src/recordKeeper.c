@@ -12,7 +12,7 @@ int main(int argc, char * argv[])
     
     if(filename != NULL)
     {
-        if(fs_startInputStream(argv[1]))
+        if(fs_startInputStream(filename))
         {
             fprintf(stderr, "Error: could not open file\n");
             return 0;
@@ -29,7 +29,7 @@ int main(int argc, char * argv[])
     }
     
     fs_closeInputStream();
-
+    rec_freeRecords();
 }
 
 int rck_generateRecords()
@@ -39,9 +39,7 @@ int rck_generateRecords()
     
     while(fgets(buffer, sizeof(buffer), time_chart))
     {
-        Record * record = rec_createRecord(buffer);
-		printf("%x\n", &record);
-        
+        Record * record = rec_createRecord(buffer); 
         if(record == NULL)
         {
             fprintf(stderr, "Could not create record\n");
@@ -68,9 +66,7 @@ int rck_generateRecords()
         printf("Error: Could not display all later records\n");
         return 1;
     }
-        
     
-    //rck_clearList(root_record);
     return 0;
 }
 
@@ -162,20 +158,5 @@ int rck_displayRecord(Record *record)
             record->timeB->hour, record->timeB->minute, ut_formatToString(record->timeB->format));
     fprintf(stdout, "---------------------------------\n");
     
-    return 0;
-}
-
-
-int rck_clearList(Record * root)
-{   
-    if(root == NULL){
-        printf("IS NULL\n");
-        return 0;
-    }
-    rck_clearList(root->next);
-    free(root->timeA);
-    free(root->timeB);
-    free(root);
-    printf("FREED\n");
     return 0;
 }
