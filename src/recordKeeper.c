@@ -4,7 +4,7 @@
 Record *root_record = NULL;
 unsigned int g_recordcount = 0;
 
-int main(int argc, char * argv[])
+int rck_begin(int argc, char * argv[])
 {
     char * filename;
     

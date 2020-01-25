@@ -1,7 +1,7 @@
 #make file - compile source files 
 
 all:		#recordKeeper - compile all
-	gcc recordKeeper.c record.c filestream.c utils.c -o rk
+	gcc main.c recordKeeper.c record.c filestream.c utils.c -o rk
 
 recordKeeper:	#recordKeeper - compile recordKeeper.c
 	gcc recordKeeper.c -o rk
