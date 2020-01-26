@@ -14,6 +14,7 @@
 # define MAX_STACK_COUNT   512
 # define DEFAULT_INPUT     "../test/default.txt"
 
+// Record struct for holding Time A and Time B
 typedef struct Records 
 {
     int id;
@@ -23,6 +24,7 @@ typedef struct Records
     struct Records   *next;
 } Record;
 
+// Time stamp struct for holding scalar values of time
 struct Timestamp
 {
     char format;
@@ -30,17 +32,12 @@ struct Timestamp
     unsigned short int minute;
 };
 
+// Stack of records for memory management
 typedef struct RecordStack
 {
     Record *record;
     struct RecordStack *next;
 } rStack;
-
-typedef struct TimestampStack
-{
-    struct Timestamp *timestamp;
-    struct Timestamp *next;
-} tStack;
 
 // functions in recordKeeper.c
 int     rck_generateRecords();
@@ -75,6 +72,5 @@ int     ut_isEmptyRecord(Record * record);
 
 
 /** TO-DO
- * - Safe Malloc
  * - data gen program
 */
