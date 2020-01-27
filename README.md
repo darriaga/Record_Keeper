@@ -5,6 +5,7 @@ To build and run application:
 
    
    Satisfied requirements 1-6
+   
                               Understood Requirements                             
                                                                                   
   - C Puzzle Description provided by ICS:                                         
