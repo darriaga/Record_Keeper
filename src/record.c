@@ -57,8 +57,8 @@ int rec_populateRecord(Record *record, char *buffer)
     
     if(fmtcheck == ISO_FORMAT)
     {
-        timeA = (struct Timestamp *)malloc(sizeof(struct Timestamp));
-        timeB = (struct Timestamp *)malloc(sizeof(struct Timestamp));
+        timeA = rec_allocateTimestamp();
+        timeB = rec_allocateTimestamp();
                
         int i_fieldsep;
         for(i_fieldsep = 0; i_fieldsep < ISO_FMT_FIELDS; i_fieldsep++)
@@ -170,9 +170,15 @@ Record *rec_allocateRecord()
 	
 }
 
-struct Timestamp * rec_allocateTimestamp()
+struct Timestamp *rec_allocateTimestamp()
 {
-    struct Timestamp * time = NULL;
+    struct Timestamp *timestamp = (struct Timestamp *)malloc(sizeof(struct Timestamp));
+    if(timestamp == NULL){
+        fprintf(stderr, "Error: Could not allocate Timestamp.\n");
+        free(timestamp);
+        return NULL;
+    }
+    return timestamp;
 }
 
 /***

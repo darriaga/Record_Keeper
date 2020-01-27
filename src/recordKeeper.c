@@ -3,7 +3,17 @@
 
 Record *root_record = NULL;
 unsigned int g_recordcount = 0;
-
+/***
+ * function rck_begin() will begin the process of reading the user-
+ * input/default time-sheet file, parsing it's contents into primitive
+ * types and adding it to a linked list of type Record * "root_record".
+ * It will also generate an analysis (earlier/later times) and print it 
+ * to stdout.
+ * 
+ * parameters: command line arguments passed in from main().
+ * 
+ * returns 0 on success and 1 on failure.
+***/
 int rck_begin(int argc, char * argv[])
 {
     char * filename;
@@ -32,6 +42,13 @@ int rck_begin(int argc, char * argv[])
     rec_freeRecords();
 }
 
+/***
+ * function rck_generateRecords will open the file stream, create a new record
+ * for every valid line read, display all kept record statistics, and insert it 
+ * to a linked list.
+ * 
+ * returns 0 on success 1 on failure
+***/
 int rck_generateRecords()
 {
     FILE *time_chart = fs_getStream();
@@ -70,6 +87,11 @@ int rck_generateRecords()
     return 0;
 }
 
+/***
+ * function rck_insertRecord will insert a record to a linked list.
+ * 
+ * returns 0 on succes and 1 on failure.
+***/
 int rck_insertRecord(Record *record)
 {
     record->next = root_record;
@@ -85,6 +107,17 @@ int rck_insertRecord(Record *record)
     }
 }
 
+/***
+ * function rck_traverseRecordsForDisplay will recursively traverse the 
+ * generated linked list and print it to the specifications of the client.
+ * 
+ * parameters: Record *const_root : linked list who's value remains unchanged
+ * as it is passed into and utilized by rck_displayLaterRecords() with each 
+ * recursive call.
+ *             Record   *var_root : linked list that is traversed .
+ * 
+ * return 0 on success and 1 on failure.
+***/
 int rck_traverseRecordsForDisplay(Record *const_root, Record *var_root)
 {
     if(var_root == NULL)
@@ -101,7 +134,16 @@ int rck_traverseRecordsForDisplay(Record *const_root, Record *var_root)
     return 0;
 }
 
-int rck_displayLaterRecords(Record * root, Record * rec)
+/***
+ * function rck_displayLaterRecords will display all the times that are later than 'rec'
+ * on provided linked list. It does so recursively.
+ * 
+ * parameters: Record *root : linked list to be traversed and compared to.
+ *             Record  *rec : Record that is compared to linked-list.
+ * 
+ * returns 0 on success
+**/
+int rck_displayLaterRecords(Record *root, Record *rec)
 {
     if(root == NULL)
         return 0;
@@ -130,7 +172,15 @@ int rck_displayLaterRecords(Record * root, Record * rec)
     return 0;
 }
 
-int rck_displayRecordStats(Record * record)
+/***
+ * function rck_displayRecordStats() will display which time is earlier in the 
+ * provided record. 
+ * 
+ * parameters: Record *record : record whos time's are compared
+ * 
+ * returns 1 if no record is provided.
+***/
+int rck_displayRecordStats(Record *record)
 {
      if(record == NULL){
         fprintf(stderr, "Error: No record to display.\n");
@@ -146,6 +196,13 @@ int rck_displayRecordStats(Record * record)
     }
 }
 
+/***
+ * function rck_displayRecord will display the contents of a single record.
+ * 
+ * parameters: Record *record : record to be displayed.
+ * 
+ * returns 1 if no record is provided.
+***/
 int rck_displayRecord(Record *record)
 {
     if(record == NULL){

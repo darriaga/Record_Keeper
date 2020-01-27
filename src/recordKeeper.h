@@ -54,7 +54,9 @@ int     rck_clearList(Record * root);
 // functions in record.c
 Record  *rec_createRecord(char * buffer);
 int      rec_populateRecord(Record * record, char * buffer);
-Record * rec_allocateRecord();
+Record  *rec_allocateRecord();
+struct Timestamp 
+        *rec_allocateTimestamp();
 int      rec_addToRecordStack(Record * record);
 int rec_freeRecords();
 

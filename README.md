@@ -3,10 +3,8 @@ To build and run application:
    will be created after compilation and can be ran using ./rk ~/path/to/your_input_file.txt.
    If no input file path argument is provided, a default one is generated. 
 
+   
    Satisfied requirements 1-6
-
-function main() can be found in recordKeeper.c
-
                               Understood Requirements                             
                                                                                   
   - C Puzzle Description provided by ICS:                                         
